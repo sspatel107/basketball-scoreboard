@@ -1,41 +1,4 @@
-<!--
-  ============================================================
-  INDEX.HTML — STRUCTURE GUIDE (you write the actual tags)
-  ============================================================
-
-  1. <head> housekeeping (do these first):
-     - Add <!DOCTYPE html> as the very first line (tells the browser to use modern standards).
-     - Add lang="en" on the <html> tag for accessibility.
-     - Add <meta charset="UTF-8"> and a <meta name="viewport" ...> so it scales on phones.
-     - Give it a <title> like "Basketball Scoreboard".
-
-  2. The big picture of the layout:
-     - You already have a .container with two <div>s (HOME and GUEST). Good start.
-     - Think of each side as a "panel". Consider giving each <div> a class like
-       class="scoreboard" so you can style both identically in CSS.
-
-  3. Inside EACH panel you need three things, in this order:
-       a) The label  -> your <h3>HOME</h3> / <h3>GUEST</h3> (keep these).
-       b) The score display -> an element that shows the number.
-          * IMPORTANT: give it a unique id, e.g. id="home-score" and id="guest-score".
-            JavaScript will need these ids to find and update the number.
-          * Start the text content at 0.
-       c) A row of THREE buttons: +1, +2, +3.
-          * Each button needs a way for JS to know (1) which team and (2) how many points.
-          * Cleanest approach: data attributes, e.g.
-              <button data-team="home" data-points="1">+1</button>
-            This avoids making six separate functions later.
-          * Wrap the three buttons in a <div class="buttons"> so you can lay them out in a row.
-
-  4. Stretch-goal placeholders (add later, not now):
-     - A single <button id="new-game">New Game</button> below both panels.
-     - Maybe a separate area for period/fouls/timer.
-
-  5. Sanity check: every element JS will touch needs a unique id;
-     repeated/decorative elements use classes.
--->
 <!DOCTYPE html>
-
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -45,7 +8,6 @@
     </head>
     <body>
         <main class="board">
-            <!-- Shared period counter, sits above the two panels. -->
             <div class="period">
                 <span class="period-label">PERIOD</span>
                 <span id="period">1</span>
@@ -77,14 +39,12 @@
                 </div>
             </div>
 
-            <!-- Game clock with its own controls. -->
             <div class="timer">
                 <span id="time">10:00</span>
                 <button id="start-pause">Start</button>
                 <button id="timer-reset">Reset</button>
             </div>
 
-            <!-- Filled in by JS when the clock hits 0:00. -->
             <p id="winner"></p>
 
             <button id="new-game">New Game</button>
