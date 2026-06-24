@@ -1,0 +1,206 @@
+/*
+  ============================================================
+  INDEX.CSS — STYLING GUIDE (match the navy/red design)
+  ============================================================
+
+  Work from the outside in. Tackle these in order:
+
+  1. THE PAGE (body):
+     - You already reset margin to 0. Good.
+     - Give the page the soft mint/grey background from the design.
+     - Pick a font. The labels in the design are a bold sans-serif (try
+       font-family: Arial, Helvetica, sans-serif; or import a Google Font).
+     - Optional: use min-height: 100vh + flexbox to center the whole board.
+
+  2. THE TWO PANELS (.scoreboard / your inner divs):
+     - Background: dark navy (something like #1B244A — eyeball it from the image).
+     - Round the corners (border-radius) and add padding so contents don't touch edges.
+     - Use text-align: center so labels, numbers, and buttons line up centered.
+     - Your .container already uses flex + space-around; add some gap/margin so the
+       two panels breathe.
+
+  3. THE LABELS (h3):
+     - White text, bold, uppercase, a bit of letter-spacing to match the design.
+
+  4. THE SCORE DISPLAY (#home-score / #guest-score):
+     - This is the "LED" look: a near-black box with bright red digits.
+       * background: black-ish, the number text color: red.
+       * Big font-size so the number dominates.
+     - The design uses a 7-segment digital font. To get that exact look you'd import
+       a font like "DSEG" (digital-7 style). Totally optional — a big bold red number
+       is fine to start. (Ask me later and I'll explain how to add the digital font.)
+
+  5. THE BUTTONS (.buttons + button):
+     - .buttons: display: flex; with a small gap; center them (justify-content: center).
+     - button: dark navy background, light/white border, rounded corners, white text,
+       padding, and cursor: pointer.
+     - Add a :hover state (slightly lighter) so they feel clickable.
+
+  6. STRETCH — "highlight the leader":
+     - Plan a class like .leading (e.g. a colored border or glow). You'll ADD/REMOVE
+       this class from JS, you don't toggle it here.
+*/
+
+/* THE PAGE: soft mint background from the design, centered content. */
+body {
+    margin: 0;
+    background-color: #DDE5DC;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* WRAPPER: stacks the two-panel row and the New Game button vertically. */
+.board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* THE TWO PANELS SIT SIDE BY SIDE inside the navy card. */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px;
+    background-color: #1B244A;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* EACH PANEL: sized to its content, centered text. */
+.scoreboard {
+    text-align: center;
+    min-width: 120px;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 12px;
+}
+
+/* THE LED DISPLAY: near-black box with bright red digits. */
+#home-score,
+#guest-score {
+    font-size: 48px;
+    font-weight: bold;
+    color: #F94F4F;
+    background-color: #0A0A0A;
+    border-radius: 6px;
+    padding: 12px;
+    margin: 0;
+    text-align: center;
+}
+
+/* LEADING TEAM: JS adds this class to the higher score's display. */
+.leading {
+    outline: 3px solid #5BE08A;
+    box-shadow: 0 0 16px rgba(91, 224, 138, 0.7);
+}
+
+/* BUTTON ROW under each display. */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+button {
+    background-color: #1B244A;
+    color: white;
+    border: 1px solid #5C6B8A;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #333E66;
+}
+
+/* PERIOD BAR above the panels. */
+.period {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #1B244A;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.period-label {
+    text-transform: uppercase;
+}
+
+#period {
+    font-size: 22px;
+    color: #F94F4F;
+    background-color: #1B244A;
+    border-radius: 5px;
+    padding: 2px 12px;
+}
+
+/* FOULS: small text + a foul button inside each panel. */
+.fouls {
+    margin: 14px 0 8px;
+    color: #C9D2E3;
+    font-size: 14px;
+}
+
+#home-fouls,
+#guest-fouls {
+    color: #F94F4F;
+    font-weight: bold;
+}
+
+.foul-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+}
+
+/* GAME CLOCK row. */
+.timer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#time {
+    font-size: 28px;
+    font-weight: bold;
+    color: #F94F4F;
+    background-color: #0A0A0A;
+    border-radius: 6px;
+    padding: 6px 16px;
+    min-width: 90px;
+    text-align: center;
+}
+
+/* WINNER banner, hidden until JS gives it text. */
+#winner {
+    margin: 0;
+    min-height: 26px;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #1B244A;
+}
+
+/* The New Game button is wider/standalone below the card. */
+#new-game {
+    background-color: #1B244A;
+    padding: 10px 24px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
